@@ -1,17 +1,16 @@
 package main
 
 import (
-	// "database/sql"
+	"database/sql"
 	"fmt"
 	"log"
 	"os"
 
-	// _ "github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
-	"github.com/jinzhu/gorm"
 )
 
-func main() (database *gorm.DB) {
+func main() {
 	// MySQLの接続情報
 	err := godotenv.Load(".env")
 	
@@ -31,7 +30,7 @@ func main() (database *gorm.DB) {
 	
 	fmt.Println(dsn)
 	// データベースに接続
-	db, err := gorm.Open("mysql", dsn)
+	db, err := sql.Open("mysql", dsn)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -45,5 +44,5 @@ func main() (database *gorm.DB) {
 	} else {
 		fmt.Println("接続完了")
 	}
-	return db
+	return
 }
