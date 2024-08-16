@@ -2,13 +2,21 @@ version: '3.8'
 
 services:
   db:
+    platform: linux/x86_64
     image: mysql:latest
+    working_dir: /app
+    env_file:
+      - .env
     environment:
-      MYSQL_ROOT_PASSWORD: my-secret-pw
+      - DB_HOST
+      - DB_PORT
+      - DB_USER
+      - DB_PASSWORD
+      - DB_NAME
     ports:
       - "3306:3306"
     volumes:
-      - db_data:/var/lib/mysql
+      - db_data:/var/lib/DB
 
   app:
     build: .
@@ -16,11 +24,8 @@ services:
       - "8080:8080"
     depends_on:
       - db
-    environment:
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_USER: root
-      DB_PASSWORD: my-secret-pw
+    stdin_open: true
+    tty: true
     command: ["go", "run", "main.go"]
 
 volumes:
