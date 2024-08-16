@@ -7,12 +7,6 @@ services:
     working_dir: /app
     env_file:
       - .env
-    environment:
-      - DB_HOST
-      - DB_PORT
-      - DB_USER
-      - DB_PASSWORD
-      - DB_NAME
     ports:
       - "3306:3306"
     volumes:
