@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ユーザーリスト</title>
+</head>
+<body>
+    <h1>ユーザーリスト</h1>
+    <a href="/create">新規ユーザー作成</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>アクション</th>
+        </tr>
+        {{range .}}
+        <tr>
+            <td>{{.ID}}</td>
+            <td>{{.Name}}</td>
+            <td>
+                <a href="/edit?id={{.ID}}">編集</a>
+                <a href="/delete?id={{.ID}}" onclick="return confirm('本当に削除しますか？')">削除</a>
+            </td>
+        </tr>
+        {{end}}
+    </table>
+</body>
+</html>

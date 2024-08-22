@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ユーザー編集</title>
+</head>
+<body>
+    <h1>ユーザー編集</h1>
+    <form method="post" action="/edit">
+        <input type="hidden" name="id" value="{{.ID}}">
+        <label>名前: <input type="text" name="name" value="{{.Name}}"></label><br>
+        <input type="submit" value="更新">
+    </form>
+    <a href="/">戻る</a>
+</body>
+</html>
